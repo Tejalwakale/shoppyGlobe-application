@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../redux/cartSlice";
+
 
 function ProductDetail() {
   const { id } = useParams();
+
+  const dispatch = useDispatch();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -58,7 +63,9 @@ function ProductDetail() {
 
         <p>Category: {product.category}</p>
 
-        <button>Add to Cart</button>
+        <button onClick={handleAddCart}>
+            Add to Cart
+        </button>
       </div>
     </main>
   );
