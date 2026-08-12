@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Cart from "./components/Cart";
 import Checkout from "./pages/Checkout";
 import NotFound from "./components/NotFound";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetail />}/>
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
