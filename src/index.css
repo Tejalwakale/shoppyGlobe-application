@@ -835,6 +835,254 @@ button:hover {
 .cart-page > a button:hover {
   background: #4338ca;
 }
+
+/* =========================================
+   CHECKOUT PAGE
+========================================= */
+
+.checkout-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 30px 70px;
+}
+
+.checkout-page > h1 {
+  margin: 0 0 35px;
+  text-align: center;
+  color: #111827;
+  font-size: 36px;
+}
+
+.checkout-container {
+  display: grid;
+  grid-template-columns: 1.3fr o.7fr;
+  gap: 30px;
+}
+
+/* =========================================
+   CHECKOUT FORM
+========================================= */
+
+.checkout-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 35px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Labels */
+
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Input fields */
+
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #111827;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.checkout-form input {
+  height: 46px;
+}
+
+.checkout-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Focus */
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  border-color: #6366f1;
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* Placeholder */
+
+.checkout-form input::placeholder,
+.checkout-form textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================================
+   PLACE ORDER BUTTON
+========================================= */
+
+.checkout-form button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border: none;
+  border-radius: 7px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.checkout-form button:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+/* Order Summary */
+.order-summary {
+  align-self: start;
+
+  padding: 30px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+/* Summary items */
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.summary-item {
+  padding: 16px 0;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.summary-item:first-child {
+  padding-top: 0;
+}
+
+.summary-item h3 {
+  margin: 0 0 7px;
+
+  color: #111827;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.summary-item p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 25px;
+  padding-top: 20px;
+
+  border-top: 2px solid #e5e7eb;
+
+  color: #111827;
+
+  font-size: 18px;
+}
+
+.summary-total strong {
+  font-size: 23px;
+}
+
+/* =========================================
+   ORDER MESSAGE
+========================================= */
+
+.order-message {
+  max-width: 600px;
+  margin: 0 auto 25px;
+  padding: 14px 20px;
+  text-align: center;
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .checkout-page {
+    padding: 35px 20px 50px;
+  }
+
+  .checkout-page h1 {
+    font-size: 32px;
+  }
+
+  .checkout-form {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-page {
+    padding: 25px 15px 40px;
+  }
+
+  .checkout-page h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  .checkout-form {
+    padding: 20px;
+    gap: 17px;
+  }
+
+  .checkout-form input {
+    height: 44px;
+  }
+
+  .checkout-form textarea {
+    min-height: 100px;
+  }
+}
 /* =========================================
    RESPONSIVE PRODUCT GRID
 ========================================= */
