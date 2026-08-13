@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 
 
@@ -54,28 +54,61 @@ function ProductDetail() {
   }
 
   return (
-    <main className="product-detail">
-      <img
-        src={product.thumbnail}
-        alt={product.title}
-        loading="lazy"
-      />
+    <main className="product-detail-page">
 
-      <div>
-        <h1>{product.title}</h1>
+      {/* Back to Home */}
+      <Link to="/" className="back-home"
+      >
+        Back to Home
+      </Link>
 
-        <p>{product.description}</p>
+      {/* Main Product Container */}
+      <section className="product-detail-container">
 
-        <h2>${product.price}</h2>
+          {/* Left Side */}
+          <div className="product-image-section">
 
-        <p>Rating: {product.rating}</p>
+            <div className="product-image-box">
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                loading="lazy"
+              />
+            </div>
 
-        <p>Category: {product.category}</p>
+            <button
+              className="detail-cart-button"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
 
-        <button onClick={handleAddToCart}>
-            Add to Cart
-        </button>
-      </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="product-info-box">
+            <span className="product-category">
+              {product.category}
+            </span>
+
+            <h1>{product.title}</h1>
+
+            <p className="detail-price">
+              Price: ${product.price}
+            </p>
+
+            <p className="detail-rating">
+              Rating: {product.rating} 
+            </p>
+
+            <p className="detail-description">
+              {product.description}
+            </p>
+
+          </div>
+
+      </section>
+
     </main>
   );
 }

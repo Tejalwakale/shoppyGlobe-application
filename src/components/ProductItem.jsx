@@ -11,22 +11,38 @@ function ProductItem({ product }) {
 
   return (
     <div className="product-card">
-      <Link to={`/product/${product.id}`}>
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          loading="lazy"
-          className="product-image"
-        />
 
-        <h2>{product.title}</h2>
+      {/* Product Image */}
+      <Link to={`/product/${product.id}`}
+            className="product-link"
+      >
+        <div className="product-image-container">
+          <img 
+            src={product.thumbnail} 
+            alt={product.title}
+            loading="lazy"
+            className="product-image"
+          />
+        </div>
+
+        {/* Product Name */}
+        <h2 className="product-title">
+          {product.title}
+        </h2>
       </Link>
 
-      <p>${product.price}</p>
+      {/* Product Price */}
+      <p className="product-price">
+        ${product.price}
+      </p>
 
-      <button onClick={handleAddToCart}>
+      {/* Add to Cart */}
+      <button className="add-cart-button"
+              onClick={handleAddToCart}
+      >
         Add to Cart
       </button>
+      
     </div>
   );
 }
