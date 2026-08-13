@@ -42,7 +42,11 @@ function ProductDetail() {
   }, [id]);
 
   if (loading) {
-    return <p>Loading product...</p>;
+    return (
+      <p className="loading">
+        Loading products...
+      </p>
+    );
   }
 
   if (error) {

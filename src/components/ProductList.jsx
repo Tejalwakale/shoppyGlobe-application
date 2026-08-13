@@ -33,7 +33,11 @@ function ProductList() {
 
   // Error state
   if (error) {
-    return <p>Error: {error}</p>;
+    return (
+      <p classname="error-message">
+        Unable to load products. Please try again.
+      </p>
+    );
   }
 
   return (
