@@ -88,3 +88,161 @@ main h1 {
 .product-card button:hover {
   opacity: 0.8;
 }
+
+.cart-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.cart-page h1 {
+  margin-bottom: 30px;
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 25px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-image {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h2 {
+  margin-bottom: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.quantity-controls button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity-controls span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.remove-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-summary {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.cart-summary h2 {
+  margin-bottom: 20px;
+}
+
+.cart-summary button,
+.cart-page > a button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.checkout-page h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.checkout-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.checkout-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.order-message {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.search-container input {
+  width: 400px;
+  max-width: 90%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #333;
+}

@@ -13,6 +13,10 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -50,6 +54,7 @@ function ProductDetail() {
       <img
         src={product.thumbnail}
         alt={product.title}
+        loading="lazy"
       />
 
       <div>
@@ -63,7 +68,7 @@ function ProductDetail() {
 
         <p>Category: {product.category}</p>
 
-        <button onClick={handleAddCart}>
+        <button onClick={handleAddToCart}>
             Add to Cart
         </button>
       </div>

@@ -1,25 +1,44 @@
-import { Routes, Route  } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import Home from "./pages/Home";
-import Cart from "./components/Cart";
-import Checkout from "./pages/Checkout";
-import NotFound from "./components/NotFound";
-import ProductDetail from "./components/ProductDetail";
+
+const Home = lazy(() => import("./pages/Home"));
+const ProductDetail = lazy(() => import("./components/ProductDetail"));
+const Cart = lazy(() => import("./components/Cart"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const NotFound = lazy(() => import("./components/NotFound"));
 
 function App() {
   return (
     <>
-     <Header/>
+      <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<ProductDetail />}/>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<p>Loading page...</p>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route
+            path="/product/:id"
+            element={<ProductDetail />}
+          />
+
+          <Route
+            path="/cart"
+            element={<Cart />}
+          />
+
+          <Route
+            path="/checkout"
+            element={<Checkout />}
+          />
+
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Routes>
+      </Suspense>
     </>
   );
 }

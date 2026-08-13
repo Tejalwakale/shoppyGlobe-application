@@ -1,67 +1,52 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-  items: [],
-};
-
-const cartSlice = createSlice({
-  name: "cart",
-  initialState,
-
-  reducers: {
-    addToCart: (state, action) => {
-      const existingProduct = state.items.find(
-        (item) => item.id === action.payload.id
-      );
-
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-      } else {
-        state.items.push({
-          ...action.payload,
-          quantity: 1,
-        });
-      }
-    },
-
-    removeFromCart: (state, action) => {
-      state.items = state.items.filter(
-        (item) => item.id !== action.payload
-      );
-    },
-
-    increaseQuantity: (state, action) => {
-      const product = state.items.find(
-        (item) => item.id === action.payload
-      );
-
-      if (product) {
-        product.quantity += 1;
-      }
-    },
-
-    decreaseQuantity: (state, action) => {
-      const product = state.items.find(
-        (item) => item.id === action.payload
-      );
-
-      if (product && product.quantity > 1) {
-        product.quantity -= 1;
-      }
-    },
-
-    clearCart: (state) => {
-      state.items = [];
-    },
-  },
-});
-
-export const {
-  addToCart,
-  removeFromCart,
+import { useDispatch } from "react-redux";
+import {
   increaseQuantity,
   decreaseQuantity,
-  clearCart,
-} = cartSlice.actions;
+  removeFromCart,
+} from "../redux/cartSlice";
 
-export default cartSlice.reducer;
+function CartItem({ item }) {
+  const dispatch = useDispatch();
+
+  return (
+    <div className="cart-item">
+      <img
+        src={item.thumbnail}
+        alt={item.title}
+        loading="lazy"
+        className="cart-item-image"
+      />
+
+      <div className="cart-item-info">
+        <h2>{item.title}</h2>
+
+        <p>Price: ${item.price}</p>
+
+        <div className="quantity-controls">
+          <button
+            onClick={() => dispatch(decreaseQuantity(item.id))}
+          >
+            -
+          </button>
+
+          <span>{item.quantity}</span>
+
+          <button
+            onClick={() => dispatch(increaseQuantity(item.id))}
+          >
+            +
+          </button>
+        </div>
+
+        <button
+          className="remove-button"
+          onClick={() => dispatch(removeFromCart(item.id))}
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default CartItem;

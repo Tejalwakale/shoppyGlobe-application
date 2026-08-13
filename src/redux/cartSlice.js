@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
+  searchQuery: "",
 };
 
 const cartSlice = createSlice({
@@ -9,6 +10,7 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
+    // Add product to cart
     addToCart: (state, action) => {
       const existingProduct = state.items.find(
         (item) => item.id === action.payload.id
@@ -24,12 +26,14 @@ const cartSlice = createSlice({
       }
     },
 
+    // Remove product from cart
     removeFromCart: (state, action) => {
       state.items = state.items.filter(
         (item) => item.id !== action.payload
       );
     },
 
+    // Increase quantity
     increaseQuantity: (state, action) => {
       const product = state.items.find(
         (item) => item.id === action.payload
@@ -40,6 +44,7 @@ const cartSlice = createSlice({
       }
     },
 
+    // Decrease quantity
     decreaseQuantity: (state, action) => {
       const product = state.items.find(
         (item) => item.id === action.payload
@@ -50,18 +55,33 @@ const cartSlice = createSlice({
       }
     },
 
+    // Clear cart after order
     clearCart: (state) => {
       state.items = [];
+    },
+
+    // Update search query
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
     },
   },
 });
 
+// Export actions
 export const {
   addToCart,
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
   clearCart,
+  setSearchQuery,
 } = cartSlice.actions;
 
+// Export selectors
+export const selectCartItems = (state) => state.cart.items;
+
+export const selectSearchQuery = (state) =>
+  state.cart.searchQuery;
+
+// Export reducer
 export default cartSlice.reducer;
