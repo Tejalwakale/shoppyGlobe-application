@@ -1,10 +1,10 @@
+import React, { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
 import useFetchProducts from "../hooks/useFetchProducts";
-import {
-  setSearchQuery,
-  selectSearchQuery,
-} from "../redux/cartSlice";
+import { setSearchQuery, selectSearchQuery } from "../redux/cartSlice";
+
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -19,16 +19,34 @@ function ProductList() {
   // Get search query from Redux
   const searchQuery = useSelector(selectSearchQuery);
 
-  // Filter products based on search query
-  const filteredProducts = products.filter((product) =>
-    product.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
-  );
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Get unique categories
+  const categories = [
+    "all",
+    ...new Set(products.map((product) => product.category)),
+  ];
+
+  // Filter products based on search and category
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory = 
+      selectedCategory === "all" ||
+      product.category === selectedCategory;
+
+      return matchesSearch && matchesCategory;
+
+  } );
+    
 
   // Loading state
   if (loading) {
-    return <p>Loading products...</p>;
+    return (
+      <p className="loading">
+        Loading product...
+      </p>
+    );
   }
 
   // Error state
@@ -54,6 +72,32 @@ function ProductList() {
             dispatch(setSearchQuery(e.target.value))
           }
         />
+      </div>
+
+      {/* Category Filter */}
+       <div className="category-container">
+        <label htmlFor="category">
+          Category:
+        </label>
+
+        <select
+          id="category"
+          value={selectedCategory}
+          onChange={(e) =>
+            setSelectedCategory(e.target.value)
+          }
+        >
+          {categories.map((category) => (
+            <option
+              key={category}
+              value={category}
+            >
+              {category === "all"
+                ? "All Categories"
+                : category}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Products */}
