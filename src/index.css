@@ -302,6 +302,33 @@ main h1 {
   background: white;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 15px 0 30px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-weight: bold;
+}
+
+.filter-group select {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  background: white;
+}
+
 /* =========================
    Responsive Design
 ========================= */
@@ -390,4 +417,20 @@ main h1 {
   .category-container select {
     width: 100%;
   }
+}
+
+.filter-container {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 15px;
+  padding: 0 15px;
+}
+
+.filter-group {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.filter-group select {
+  width: 100%;
 }

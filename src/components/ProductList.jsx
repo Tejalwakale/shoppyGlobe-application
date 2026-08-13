@@ -19,7 +19,11 @@ function ProductList() {
   // Get search query from Redux
   const searchQuery = useSelector(selectSearchQuery);
 
+  // category state
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Sort state
+  const [sortOrder, setSortOrder] = useState("default");
 
   // Get unique categories
   const categories = [
@@ -38,6 +42,17 @@ function ProductList() {
       return matchesSearch && matchesCategory;
 
   } );
+
+  // Sort product by price
+  const sortedProducts = [...filteredProducts];
+
+  if (sortOrder === "low-high") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortOrder === "high-low") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  }
     
 
   // Loading state
@@ -52,7 +67,7 @@ function ProductList() {
   // Error state
   if (error) {
     return (
-      <p classname="error-message">
+      <p className="error-message">
         Unable to load products. Please try again.
       </p>
     );
@@ -74,36 +89,66 @@ function ProductList() {
         />
       </div>
 
-      {/* Category Filter */}
-       <div className="category-container">
-        <label htmlFor="category">
-          Category:
-        </label>
+      {/* Filters */}
+      <div className="filter-container">
 
-        <select
-          id="category"
-          value={selectedCategory}
-          onChange={(e) =>
-            setSelectedCategory(e.target.value)
-          }
-        >
-          {categories.map((category) => (
-            <option
-              key={category}
-              value={category}
+        {/* Category */}
+          <div className="filter-group">
+            <label htmlFor="category">
+              Category:
+            </label>
+
+            <select
+              id="category"
+              value={selectedCategory}
+              onChange={(e) =>
+                setSelectedCategory(e.target.value)
+              }
             >
-              {category === "all"
-                ? "All Categories"
-                : category}
-            </option>
-          ))}
-        </select>
-      </div>
+              {categories.map((category) => (
+                <option
+                    key={category}
+                    value={category}
+                >
+                  {category === "all"
+                    ? "All Categories"
+                    : category}
+                </option>
+              ))}
+            </select>
+          </div>
 
+         {/* Sort */}
+         <div className="filter-group">
+            <label htmlFor="sort">
+              Sort by:
+            </label>
+
+            <select
+              id="sort"
+              value={sortOrder}
+              onChange={(e) =>
+                setSortOrder(e.target.value)
+              }
+            >
+              <option value="default">
+                Default
+              </option>
+
+              <option value="low-high">
+               Price: Low to High
+              </option>
+
+              <option value="high-low">
+                Price: High to Low
+              </option>
+            </select>
+          </div>
+      </div>
       {/* Products */}
-      {filteredProducts.length > 0 ? (
+      {sortedProducts.length > 0 ? (
         <div className="product-grid">
-          {filteredProducts.map((product) => (
+          {sortedProducts.map((product) => (
             <ProductItem
               key={product.id}
               product={product}
