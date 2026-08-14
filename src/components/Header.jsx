@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaHome, FaShoppingCart } from "react-icons/fa"
 
 function Header() {
   const cartItems = useSelector(
@@ -13,15 +14,22 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="logo">
-            <span>ShoppyGlobe</span>
-      </div>
 
+      {/* Logo */}
+      <Link to="/" className="logo">
+        <span>ShoppyGlobe</span>
+      </Link>
+
+      {/* Navigation Bar */}
       <nav className="nav">
-        <Link to="/">Home</Link>
+      
+        <Link to="/" className="home-link">
+        <FaHome />
+        </Link>
 
-        <Link to="/cart">
-            Cart ({totalItems})
+        <Link to="/cart" className="cart-link">
+          <FaShoppingCart />
+          ({totalItems})
         </Link>
       </nav>
     </header>
