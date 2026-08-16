@@ -153,7 +153,7 @@ CSS media queries are used to provide responsive layouts.
 
 Clone the repository:
 
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone (https://github.com/Tejalwakale/shoppyGlobe-application.git)
 
 Navigate to the project folder:
 
@@ -179,4 +179,4 @@ npm run build
 
 GitHub Repository:
 
-YOUR_GITHUB_REPOSITORY_LINK
+https://github.com/Tejalwakale/shoppyGlobe-application.git
