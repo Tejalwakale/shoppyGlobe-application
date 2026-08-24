@@ -5,35 +5,46 @@ import { addToCart } from "../redux/cartSlice";
 
 
 function ProductDetail() {
+  // Get the product ID from the dynamic URL
   const { id } = useParams();
 
+  // Redux dispatch is used to add the selected product to the cart
   const dispatch = useDispatch();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // Add the current product to the Redux cart
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
 
+  // Fetch product details whenever the product ID changes
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        
+          // Request product details using the dynamic product ID
         const response = await fetch(
           `https://dummyjson.com/products/${id}`
         );
 
+        // Handle unsuccessful API responses
         if (!response.ok) {
           throw new Error("Product not found");
         }
 
+        // Convert the API response into JSON
         const data = await response.json();
 
+        // Store the fetched product in component state
         setProduct(data);
       } catch (error) {
+        // Store the error message for displaying to the user
         setError(error.message);
       } finally {
+        // Stop displaying the loading state
         setLoading(false);
       }
     };
