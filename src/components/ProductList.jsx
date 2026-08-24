@@ -14,7 +14,7 @@ function ProductList() {
     products,
     loading,
     error,
-  } = useFetchProducts();
+  } = useFetchProducts("https://dummyjson.com/products");
 
   // Get search query from Redux
   const searchQuery = useSelector(selectSearchQuery);

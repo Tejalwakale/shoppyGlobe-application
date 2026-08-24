@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useFetchProducts() {
+function useFetchProducts(url) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -8,9 +8,7 @@ function useFetchProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "https://dummyjson.com/products"
-        );
+        const response = await fetch(url);
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -27,7 +25,7 @@ function useFetchProducts() {
     };
 
     fetchProducts();
-  }, []);
+  }, [url]);
 
   return {
     products,
