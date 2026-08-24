@@ -9,7 +9,7 @@ import { setSearchQuery, selectSearchQuery } from "../redux/cartSlice";
 function ProductList() {
   const dispatch = useDispatch();
 
-  // Fetch products using the custom hook
+  // Fetch all products using the reusable custom hook
   const {
     products,
     loading,
@@ -19,13 +19,11 @@ function ProductList() {
   // Get search query from Redux
   const searchQuery = useSelector(selectSearchQuery);
 
-  // category state
+  // Store the selected category and sorting option
   const [selectedCategory, setSelectedCategory] = useState("all");
-
-  // Sort state
   const [sortOrder, setSortOrder] = useState("default");
 
-  // Get unique categories
+  // Create the list of unique product categories
   const categories = [
     "all",
     ...new Set(products.map((product) => product.category)),
@@ -35,6 +33,7 @@ function ProductList() {
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
 
+    //  Check whether the product belongd to the selected category
     const matchesCategory = 
       selectedCategory === "all" ||
       product.category === selectedCategory;
@@ -46,10 +45,12 @@ function ProductList() {
   // Sort product by price
   const sortedProducts = [...filteredProducts];
 
+  // Sort products from lowest price to highest price
   if (sortOrder === "low-high") {
     sortedProducts.sort((a, b) => a.price - b.price);
   }
 
+  // Sort the products from highest price to lowest price
   if (sortOrder === "high-low") {
     sortedProducts.sort((a, b) => b.price - a.price);
   }
@@ -75,6 +76,8 @@ function ProductList() {
 
   return (
     <section className="product-list">
+
+      {/* Page heading */}
       <h1>Our Products</h1>
 
       {/* Search */}
@@ -84,6 +87,7 @@ function ProductList() {
           placeholder="Search products..."
           value={searchQuery}
           onChange={(e) =>
+            // Store the search value in Redux
             dispatch(setSearchQuery(e.target.value))
           }
         />
@@ -102,9 +106,11 @@ function ProductList() {
               id="category"
               value={selectedCategory}
               onChange={(e) =>
+                // Update the selected category
                 setSelectedCategory(e.target.value)
               }
             >
+              {/* Display the all available product categories */}
               {categories.map((category) => (
                 <option
                     key={category}
@@ -118,7 +124,7 @@ function ProductList() {
             </select>
           </div>
 
-         {/* Sort */}
+         {/* Price sorting options */}
          <div className="filter-group">
             <label htmlFor="sort">
               Sort by:
@@ -128,6 +134,7 @@ function ProductList() {
               id="sort"
               value={sortOrder}
               onChange={(e) =>
+                // Update the selected sorting option
                 setSortOrder(e.target.value)
               }
             >
@@ -145,6 +152,7 @@ function ProductList() {
             </select>
           </div>
       </div>
+
       {/* Products */}
       {sortedProducts.length > 0 ? (
         <div className="product-grid">
@@ -156,6 +164,7 @@ function ProductList() {
           ))}
         </div>
       ) : (
+        // Display the message when no product matches the filters
         <p className="no-products">
           No products found.
         </p>
