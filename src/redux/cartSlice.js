@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Store cart items and the current product search query
 const initialState = {
   items: [],
   searchQuery: "",
@@ -10,7 +11,7 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    // Add product to cart
+    // Add product to cart or increase its quantity
     addToCart: (state, action) => {
       const existingProduct = state.items.find(
         (item) => item.id === action.payload.id
@@ -33,7 +34,7 @@ const cartSlice = createSlice({
       );
     },
 
-    // Increase quantity
+    // Increase quantity of an existing cart item
     increaseQuantity: (state, action) => {
       const product = state.items.find(
         (item) => item.id === action.payload
@@ -44,7 +45,7 @@ const cartSlice = createSlice({
       }
     },
 
-    // Decrease quantity
+    // Decrease quantity without allowing it to go below 1
     decreaseQuantity: (state, action) => {
       const product = state.items.find(
         (item) => item.id === action.payload
