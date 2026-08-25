@@ -1,10 +1,18 @@
+// Import Link for navigation to the product detail page
 import { Link } from "react-router-dom";
+
+// Import useDispatch to send actions to Redux
 import { useDispatch } from "react-redux";
+
+// Import addToCart action from the cart slice
 import { addToCart } from "../redux/cartSlice";
 
 function ProductItem({ product }) {
+
+  // Create dispatch function for Redux actions
   const dispatch = useDispatch();
 
+  // Add the selected product to the cart
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };

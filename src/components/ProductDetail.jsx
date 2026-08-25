@@ -1,6 +1,13 @@
+// Import React hooks for state and side effects
 import { useEffect, useState } from "react";
+
+// Import Redux dispatch to send actions
 import { useDispatch } from "react-redux";
+
+// Import Link for navigation and useParams to get URL parameters
 import { Link, useParams } from "react-router-dom";
+
+// Import addToCart action from Redux cart slice
 import { addToCart } from "../redux/cartSlice";
 
 
@@ -11,8 +18,13 @@ function ProductDetail() {
   // Redux dispatch is used to add the selected product to the cart
   const dispatch = useDispatch();
 
+    // Store product details
   const [product, setProduct] = useState(null);
+
+   // Store loading status
   const [loading, setLoading] = useState(true);
+
+  // Store error message
   const [error, setError] = useState("");
 
   // Add the current product to the Redux cart
@@ -52,6 +64,7 @@ function ProductDetail() {
     fetchProduct();
   }, [id]);
 
+  // Show loading message while product is being fetched
   if (loading) {
     return (
       <p className="loading">
@@ -60,6 +73,7 @@ function ProductDetail() {
     );
   }
 
+   // Show error message if product cannot be loaded
   if (error) {
     return <p>Error: {error}</p>;
   }
@@ -76,7 +90,7 @@ function ProductDetail() {
       {/* Main Product Container */}
       <section className="product-detail-container">
 
-          {/* Left Side */}
+          {/* Left Side Product image and cart button*/}
           <div className="product-image-section">
 
             <div className="product-image-box">
@@ -87,6 +101,7 @@ function ProductDetail() {
               />
             </div>
 
+            {/* Button to add product to cart */}
             <button
               className="detail-cart-button"
               onClick={handleAddToCart}
@@ -96,22 +111,28 @@ function ProductDetail() {
 
           </div>
 
-          {/* Right Side */}
+          {/* Right Side - Product information */}
           <div className="product-info-box">
+
+            {/* Display product category */}
             <span className="product-category">
               {product.category}
             </span>
 
+            {/* Product Name */}
             <h1>{product.title}</h1>
 
+            {/* Product price */}
             <p className="detail-price">
               Price: ${product.price}
             </p>
 
+            {/* Product rating */}
             <p className="detail-rating">
               Rating: {product.rating} 
             </p>
 
+            {/* Product description */}
             <p className="detail-description">
               {product.description}
             </p>

@@ -1,12 +1,22 @@
+// Import useState to manage category and sorting state
 import { useState } from "react";
 
+// Import Redux hooks to read and update Redux state
 import { useDispatch, useSelector } from "react-redux";
+
+// Import component to display individual products
 import ProductItem from "./ProductItem";
+
+// Import custom hook to fetch products from the API
 import useFetchProducts from "../hooks/useFetchProducts";
+
+// Import Redux actions and selector for the search query
 import { setSearchQuery, selectSearchQuery } from "../redux/cartSlice";
 
 
 function ProductList() {
+
+    // Create dispatch function to send actions to Redux
   const dispatch = useDispatch();
 
   // Fetch all products using the reusable custom hook
